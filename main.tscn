@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bim7x1l6lv7nh"]
+[gd_scene load_steps=8 format=3 uid="uid://bim7x1l6lv7nh"]
 
 [ext_resource type="PackedScene" uid="uid://c2ctej6fvv5j7" path="res://components/player.tscn" id="1_55kl4"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_b2yiv"]
@@ -58,12 +58,9 @@ sources/0 = SubResource("TileSetAtlasSource_2uydx")
 [sub_resource type="QuadMesh" id="QuadMesh_qorxy"]
 size = Vector2(1000, 1000)
 
-[sub_resource type="Curve" id="Curve_13rok"]
-_data = [Vector2(0, 0.0558963), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveTexture" id="CurveTexture_g3eh1"]
-curve = SubResource("Curve_13rok")
+[sub_resource type="Environment" id="Environment_oio5h"]
+background_mode = 1
+background_color = Color(0.572549, 0, 0, 1)
 
 [node name="main" type="Node2D"]
 
@@ -72,7 +69,7 @@ zoom = Vector2(9, 9)
 position_smoothing_speed = 10.0
 script = ExtResource("1_b2yiv")
 
-[node name="Floor" type="TileMap" parent="."]
+[node name="FloorTile" type="TileMap" parent="."]
 visible = false
 texture_filter = 1
 tile_set = SubResource("TileSet_08td6")
@@ -82,8 +79,12 @@ layer_0/tile_data = PackedInt32Array(-4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65
 layer_1/name = "Decal"
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Floor2" type="MeshInstance2D" parent="."]
+[node name="Floor" type="MeshInstance2D" parent="."]
+visible = false
 mesh = SubResource("QuadMesh_qorxy")
-texture = SubResource("CurveTexture_g3eh1")
+texture = ExtResource("1_hjoj5")
 
 [node name="Player" parent="." instance=ExtResource("1_55kl4")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oio5h")
