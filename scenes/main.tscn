@@ -7,10 +7,11 @@
 [ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="3_75a8b"]
 [ext_resource type="PackedScene" uid="uid://b1slbm0appneb" path="res://components/Sprite.tscn" id="4_p46n5"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_5ffbv"]
+[sub_resource type="BoxMesh" id="BoxMesh_gbq3o"]
+size = Vector3(0.2, 0.2, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ifdb5"]
-size = Vector3(0.112, 0.112, 0.112)
+[sub_resource type="BoxShape3D" id="BoxShape3D_5lc6p"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_orlqn"]
 size = Vector3(100, 0.2, 100)
@@ -45,21 +46,18 @@ shader_parameter/SOFTNESS = 0.65
 [node name="Player" parent="." instance=ExtResource("1_xrwec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178347, 0)
 MAX_SPEED = 1.0
-MAX_SPRINT_SPEED = 2.0
 ACCELLERATION = 14
 FRICTION = 17
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.609716, 0.0959305, 0)
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.755349, 0.125429, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(0.102, 0, 0, 0, 0.102, 0, 0, 0, 0.102, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-mesh = SubResource("BoxMesh_5ffbv")
-skeleton = NodePath("../..")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0189298, 0)
+mesh = SubResource("BoxMesh_gbq3o")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-shape = SubResource("BoxShape3D_ifdb5")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_5lc6p")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
