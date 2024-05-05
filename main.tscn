@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bim7x1l6lv7nh"]
+[gd_scene load_steps=9 format=3 uid="uid://bim7x1l6lv7nh"]
 
-[ext_resource type="PackedScene" uid="uid://c2ctej6fvv5j7" path="res://components/player.tscn" id="1_55kl4"]
+[ext_resource type="PackedScene" uid="uid://c2ctej6fvv5j7" path="res://components/player2d.tscn" id="1_55kl4"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_b2yiv"]
 [ext_resource type="Texture2D" uid="uid://d3ffavwyl70s4" path="res://assets/sprites/atlas_floor-16x16.png" id="1_hjoj5"]
+[ext_resource type="PackedScene" uid="uid://gkl3ktqay73x" path="res://components/cursor.tscn" id="4_3dpj7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2uydx"]
 texture = ExtResource("1_hjoj5")
@@ -64,11 +65,6 @@ background_color = Color(0.572549, 0, 0, 1)
 
 [node name="main" type="Node2D"]
 
-[node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(9, 9)
-position_smoothing_speed = 10.0
-script = ExtResource("1_b2yiv")
-
 [node name="FloorTile" type="TileMap" parent="."]
 visible = false
 texture_filter = 1
@@ -83,6 +79,17 @@ layer_1/tile_data = PackedInt32Array()
 visible = false
 mesh = SubResource("QuadMesh_qorxy")
 texture = ExtResource("1_hjoj5")
+
+[node name="Camera" type="Camera2D" parent="."]
+texture_filter = 1
+zoom = Vector2(9, 9)
+position_smoothing_speed = 10.0
+script = ExtResource("1_b2yiv")
+
+[node name="CanvasLayer" parent="Camera" instance=ExtResource("4_3dpj7")]
+layer = 2
+
+[node name="SubViewport" type="SubViewport" parent="Camera"]
 
 [node name="Player" parent="." instance=ExtResource("1_55kl4")]
 
