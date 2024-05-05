@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdffwuxodnftc"
-path="res://.godot/imported/run_east_32x32.png-2a288ca3f4fd36dfe547566461c81d21.ctex"
+uid="uid://c5qliicrsvlyj"
+path="res://.godot/imported/bayer4tile8.png-f0939d97d8029605b2cb493beb25c57b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Animations/Run/run_east_32x32.png"
-dest_files=["res://.godot/imported/run_east_32x32.png-2a288ca3f4fd36dfe547566461c81d21.ctex"]
+source_file="res://assets/sprites/bayer4tile8.png"
+dest_files=["res://.godot/imported/bayer4tile8.png-f0939d97d8029605b2cb493beb25c57b.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

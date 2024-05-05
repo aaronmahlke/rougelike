@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1slbm0appneb"]
+
+[ext_resource type="Texture2D" uid="uid://bqbcpcpheb3tg" path="res://assets/sprites/Misc/coral_11x24.png" id="1_4lvcn"]
+
+[node name="Sprite" type="Sprite3D"]
+transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("1_4lvcn")
+region_enabled = true
+region_rect = Rect2(0, 0, 11, 24)

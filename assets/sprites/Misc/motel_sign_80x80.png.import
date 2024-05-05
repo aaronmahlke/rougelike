@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdffwuxodnftc"
-path="res://.godot/imported/run_east_32x32.png-2a288ca3f4fd36dfe547566461c81d21.ctex"
+uid="uid://bxvjg7q06w6a7"
+path="res://.godot/imported/motel_sign_80x80.png-7d8e1147df00fb3b4c5c72cc321605f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Animations/Run/run_east_32x32.png"
-dest_files=["res://.godot/imported/run_east_32x32.png-2a288ca3f4fd36dfe547566461c81d21.ctex"]
+source_file="res://assets/sprites/Misc/motel_sign_80x80.png"
+dest_files=["res://.godot/imported/motel_sign_80x80.png-7d8e1147df00fb3b4c5c72cc321605f6.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

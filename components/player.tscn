@@ -1,23 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds441iire4rx0"]
+[gd_scene load_steps=9 format=3 uid="uid://ds441iire4rx0"]
 
 [ext_resource type="Script" path="res://scripts/player_3d.gd" id="1_qyib2"]
 [ext_resource type="SpriteFrames" uid="uid://c57grhb3pijbp" path="res://components/player-anim.tres" id="1_w5bfb"]
+[ext_resource type="Texture2D" uid="uid://deypuc6e3pjto" path="res://assets/sprites/Effects/dust_poof_8x8.png" id="3_jo2eh"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhwlq"]
-radius = 0.0776119
-height = 0.21957
+[sub_resource type="BoxShape3D" id="BoxShape3D_gq67s"]
+size = Vector3(0.12207, 0.161133, 0.102417)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_a4uh1"]
+frame_0/texture = ExtResource("3_jo2eh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x16ag"]
+transparency = 1
+albedo_texture = SubResource("AnimatedTexture_a4uh1")
+texture_filter = 0
+texture_repeat = false
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+grow_amount = -1.006
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gk2y3"]
+gravity = Vector3(2.08165e-12, 0.1, 2.08165e-12)
+
+[sub_resource type="QuadMesh" id="QuadMesh_w4woo"]
+size = Vector2(0.05, 0.05)
 
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 script = ExtResource("1_qyib2")
+MAX_SPEED = null
+MAX_SPRINT_SPEED = null
+ACCELLERATION = null
+FRICTION = null
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.127456, 2.08165e-12)
-billboard = 1
+transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 0.0448156, -0.059)
 double_sided = false
+alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("1_w5bfb")
 animation = &"idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109069, 0)
-shape = SubResource("CapsuleShape3D_mhwlq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00017105, 0.109069, -0.0678101)
+shape = SubResource("BoxShape3D_gq67s")
+
+[node name="FootstepParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0532495, -0.0239117)
+material_override = SubResource("StandardMaterial3D_x16ag")
+emitting = false
+amount = 3
+lifetime = 1.06
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+process_material = SubResource("ParticleProcessMaterial_gk2y3")
+draw_pass_1 = SubResource("QuadMesh_w4woo")

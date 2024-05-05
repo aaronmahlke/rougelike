@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdffwuxodnftc"
-path="res://.godot/imported/run_east_32x32.png-2a288ca3f4fd36dfe547566461c81d21.ctex"
+uid="uid://deypuc6e3pjto"
+path.s3tc="res://.godot/imported/dust_poof_8x8.png-103c7da1a9b4bbfa1c83d62d2504c788.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/sprites/Animations/Run/run_east_32x32.png"
-dest_files=["res://.godot/imported/run_east_32x32.png-2a288ca3f4fd36dfe547566461c81d21.ctex"]
+source_file="res://assets/sprites/Effects/dust_poof_8x8.png"
+dest_files=["res://.godot/imported/dust_poof_8x8.png-103c7da1a9b4bbfa1c83d62d2504c788.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

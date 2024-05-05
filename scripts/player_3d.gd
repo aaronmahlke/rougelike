@@ -1,11 +1,12 @@
 extends CharacterBody3D
 
 @onready var player_sprite = $Sprite
+@onready var footstep_particles = $FootstepParticles
 
-const MAX_SPEED = 2 
-const MAX_SPRINT_SPEED = 4
-const ACCELLERATION = 10
-const FRICTION = 20
+@export_range(0.0, 20.0) var MAX_SPEED: float = 2.0 
+@export_range(0, 40.0) var MAX_SPRINT_SPEED = 4.0
+@export_range(0, 100.0) var ACCELLERATION = 10
+@export_range(0, 200.0)var FRICTION = 20
 
 var last_direction = Vector3.ZERO
 var state = "idle"
@@ -59,11 +60,14 @@ func update_anim():
 		player_sprite.animation = 'idle'
 		player_sprite.stop()
 		player_sprite.frame = idle_frames[get_quarter(last_direction)]
+		footstep_particles.emitting = false
 	else:
 		if player_sprite.animation != state:
 			player_sprite.animation = state
 			player_sprite.play()
+			footstep_particles.emitting = true
 
+	
 func get_quarter(dir) -> String:
 	if dir.x < 0:
 		if dir.z < 0:
