@@ -103,12 +103,10 @@ shadow_blur = 0.505
 environment = ExtResource("3_66op3")
 
 [node name="Sprite" parent="." instance=ExtResource("4_p46n5")]
-transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 0.728883, 0.209421, -0.620645)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73298, 0.210503, -0.621277)
 
 [node name="Sprite2" parent="." instance=ExtResource("4_p46n5")]
-transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, -0.781617, 0.209421, 0.293517)
-region_rect = Rect2(11, 0, 11, 24)
+transform = Transform3D(0.999843, -0.0177142, 0, 0.0177142, 0.999843, 0, 0, 0, 1, -0.781617, 0.209421, 0.293517)
 
 [node name="Sprite3" parent="." instance=ExtResource("4_p46n5")]
-transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, -1.23258, 0.209421, -0.96574)
-region_rect = Rect2(22, 0, 11, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23258, 0.209421, -0.96574)

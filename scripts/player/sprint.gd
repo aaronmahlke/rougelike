@@ -19,8 +19,10 @@ func physics_update(delta: float) -> void:
 		last_direction = direction
 
 	# animation
-	animation_name = "sprint-" + player.get_quarter(direction)
-	player.play_animation(animation_name)
+	var direction_name = player.get_quarter(direction)
+	if direction_name != "idle":
+		animation_name = "sprint-" + direction_name 
+		player.play_animation(animation_name)
 
 	if Input.is_action_just_released("sprint"):
 		state_machine.transition_to("Walk")
