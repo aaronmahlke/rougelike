@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dscvfvm1ji3tb"
+path="res://.godot/imported/GRASS - Walk short 7.wav-13d959fafd90601f161e0ae550f3b7c1.sample"
+
+[deps]
+
+source_file="res://assets/audio/fx/player/Walk/Grass/GRASS - Walk short 7.wav"
+dest_files=["res://.godot/imported/GRASS - Walk short 7.wav-13d959fafd90601f161e0ae550f3b7c1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

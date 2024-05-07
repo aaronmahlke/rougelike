@@ -3,9 +3,14 @@ extends PlayerState
 @export_range(0.0, 20.0)
 var MAX_WALK_SPEED: float = 1.0 
 
+@export	
+var audio: AudioStreamPlayer3D = null
+
+@export
+var STEP_DELAY:	float = 0.4
+
 var animation_name:	String = ""
 var last_direction:	Vector3 = Vector3.LEFT
-var STEP_DELAY:	float = 0.3
 var step_timer:	float = 0.0
 
 func enter(_msg := {}) -> void:
@@ -30,7 +35,7 @@ func physics_update(delta: float) -> void:
 	# sound
 	step_timer -= delta
 	if step_timer <= 0.0:
-		player.footstep_sounds.play()
+		audio.play()
 		step_timer = STEP_DELAY
 
 

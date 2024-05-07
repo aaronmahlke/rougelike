@@ -6,6 +6,9 @@ var DASH_SPEED: float = 4.0
 @export_range(0.0, 0.8)
 var DASH_DURATION: float = 0.2
 
+@export	
+var audio: AudioStreamPlayer3D = null
+
 var dash_timer: float = 0.0
 var animation_name:	String = ""
 var direction: Vector3 = Vector3.ZERO
@@ -15,6 +18,7 @@ func enter(_msg := {}) -> void:
 		direction = _msg.last_direction
 
 	dash_timer = DASH_DURATION
+	audio.play()
 
 func physics_update(_delta: float) -> void:
 	var dash_vector = direction * DASH_SPEED

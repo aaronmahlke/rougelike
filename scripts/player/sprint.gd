@@ -3,8 +3,16 @@ extends PlayerState
 @export_range(0.0, 20.0)
 var MAX_SPRINT_SPEED: float = 2.0 
 
+@export	
+var audio: AudioStreamPlayer3D = null
+
+@export
+var STEP_DELAY:	float = 0.35
+
 var animation_name:	String = ""
 var last_direction:	Vector3 = Vector3.LEFT
+
+var step_timer:	float = 0.0
 
 func enter(_msg := {}) -> void:
 	player.footstep_particles.emitting = true
@@ -23,6 +31,12 @@ func physics_update(delta: float) -> void:
 	if direction_name != "idle":
 		animation_name = "sprint-" + direction_name 
 		player.play_animation(animation_name)
+
+	# sound
+	step_timer -= delta
+	if step_timer <= 0.0:
+		audio.play()
+		step_timer = STEP_DELAY
 
 	if Input.is_action_just_released("sprint"):
 		state_machine.transition_to("Walk")
