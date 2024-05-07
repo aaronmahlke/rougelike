@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqbcpcpheb3tg" path="res://assets/sprites/Misc/coral_11x24.png" id="1_4lvcn"]
 [ext_resource type="Script" path="res://scripts/foliage.gd" id="1_eojat"]
-[ext_resource type="AudioStream" uid="uid://ds1wfqm7egp0q" path="res://assets/audio/fx/leaves.wav" id="3_5gxeg"]
+[ext_resource type="AudioStream" uid="uid://c50eix18ebi01" path="res://assets/audio/fx/leaves_2.wav" id="3_v5gjg"]
 
 [sub_resource type="Animation" id="Animation_gp0k0"]
 length = 0.001
@@ -69,10 +69,10 @@ _data = {
 size = Vector3(0.180664, 0.200195, 0.0935059)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fqulc"]
-random_pitch = 1.17
-random_volume_offset_db = 1.08
+random_pitch = 1.78
+random_volume_offset_db = 1.46
 streams_count = 1
-stream_0/stream = ExtResource("3_5gxeg")
+stream_0/stream = ExtResource("3_v5gjg")
 stream_0/weight = 1.0
 
 [node name="Foliage" type="Node3D"]
@@ -104,6 +104,6 @@ shape = SubResource("BoxShape3D_a5jn6")
 
 [node name="Audio" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_fqulc")
-volume_db = -16.0
+volume_db = -3.58
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_collision"]
