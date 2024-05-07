@@ -1,11 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds441iire4rx0"]
+[gd_scene load_steps=19 format=3 uid="uid://ds441iire4rx0"]
 
 [ext_resource type="Script" path="res://scripts/player_3d.gd" id="1_qyib2"]
 [ext_resource type="SpriteFrames" uid="uid://c57grhb3pijbp" path="res://components/player-anim.tres" id="1_w5bfb"]
 [ext_resource type="Texture2D" uid="uid://deypuc6e3pjto" path="res://assets/sprites/Effects/dust_poof_8x8.png" id="3_jo2eh"]
+[ext_resource type="AudioStream" uid="uid://vt2elbsjmur0" path="res://assets/audio/fx/Run/Dirt/DIRT - Run Short 1.wav" id="4_7ukd3"]
+[ext_resource type="AudioStream" uid="uid://duoyrb35witj4" path="res://assets/audio/fx/Run/Dirt/DIRT - Run Short 2.wav" id="5_amo2b"]
 [ext_resource type="Script" path="res://scripts/player/idle.gd" id="5_b4jip"]
 [ext_resource type="Script" path="res://scripts/state/statemachine.gd" id="5_qfjxs"]
 [ext_resource type="Script" path="res://scripts/player/walk.gd" id="6_iolu4"]
+[ext_resource type="AudioStream" uid="uid://dejnf8n7bi3ek" path="res://assets/audio/fx/Run/Dirt/DIRT - Run Short 3.wav" id="6_lk4ox"]
+[ext_resource type="AudioStream" uid="uid://bjn6xejaoh1o2" path="res://assets/audio/fx/Run/Dirt/DIRT - Run Short 4.wav" id="7_0pq17"]
 [ext_resource type="Script" path="res://scripts/player/sprint.gd" id="7_ibwta"]
 [ext_resource type="Script" path="res://scripts/player/dash.gd" id="8_236uc"]
 
@@ -33,11 +37,20 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 [sub_resource type="QuadMesh" id="QuadMesh_w4woo"]
 size = Vector2(0.05, 0.05)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r8v1c"]
+streams_count = 4
+stream_0/stream = ExtResource("4_7ukd3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_amo2b")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("6_lk4ox")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("7_0pq17")
+stream_3/weight = 1.0
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 script = ExtResource("1_qyib2")
-ACCELLERATION = null
-FRICTION = null
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 0.0448156, -0.059)
@@ -61,6 +74,10 @@ visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
 process_material = SubResource("ParticleProcessMaterial_gk2y3")
 draw_pass_1 = SubResource("QuadMesh_w4woo")
 
+[node name="FootstepSounds" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_r8v1c")
+bus = &"Player"
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_qfjxs")
 initial_state = NodePath("Idle")
@@ -74,8 +91,9 @@ MAX_WALK_SPEED = null
 
 [node name="Sprint" type="Node" parent="StateMachine"]
 script = ExtResource("7_ibwta")
+MAX_SPRINT_SPEED = 1.5
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("8_236uc")
-DASH_SPEED = 4.0
-DASH_DURATION = 0.4
+DASH_SPEED = 3.0
+DASH_DURATION = 0.361

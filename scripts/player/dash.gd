@@ -1,7 +1,7 @@
 extends PlayerState
 
 @export_range(0.0, 20.0)
-var DASH_SPEED: float = 6.0 
+var DASH_SPEED: float = 4.0 
 
 @export_range(0.0, 0.8)
 var DASH_DURATION: float = 0.2

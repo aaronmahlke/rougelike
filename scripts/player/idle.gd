@@ -45,9 +45,6 @@ func enter(_msg := {}) -> void:
 	if "last_direction" in _msg:
 		last_direction = _msg.last_direction
 
-	#	movement
-	player.velocity = Vector3.ZERO
-
 	#	animation
 	player.sprite.animation = 'idle'
 	player.sprite.stop()
@@ -65,3 +62,6 @@ func update(_delta: float) -> void:
 		else:
 			state_machine.transition_to("Walk")
 	
+func physics_update(delta: float) -> void:
+	player.velocity	= lerp(player.velocity, Vector3.ZERO, player.FRICTION * delta)	
+	player.move_and_slide()

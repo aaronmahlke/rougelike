@@ -5,6 +5,8 @@ var MAX_WALK_SPEED: float = 1.0
 
 var animation_name:	String = ""
 var last_direction:	Vector3 = Vector3.LEFT
+var STEP_DELAY:	float = 0.3
+var step_timer:	float = 0.0
 
 func enter(_msg := {}) -> void:
 	player.footstep_particles.emitting = true
@@ -24,6 +26,12 @@ func physics_update(delta: float) -> void:
 	if direction_name != "idle":
 		animation_name = "walk-" + direction_name 
 		player.play_animation(animation_name)
+
+	# sound
+	step_timer -= delta
+	if step_timer <= 0.0:
+		player.footstep_sounds.play()
+		step_timer = STEP_DELAY
 
 
 	# transition
