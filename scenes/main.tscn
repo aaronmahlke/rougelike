@@ -45,7 +45,6 @@ shader_parameter/SOFTNESS = 0.65
 
 [node name="Player" parent="." instance=ExtResource("1_xrwec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178347, 0)
-MAX_SPEED = 1.0
 ACCELLERATION = 14
 FRICTION = 17
 

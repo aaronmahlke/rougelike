@@ -1,8 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds441iire4rx0"]
+[gd_scene load_steps=14 format=3 uid="uid://ds441iire4rx0"]
 
 [ext_resource type="Script" path="res://scripts/player_3d.gd" id="1_qyib2"]
 [ext_resource type="SpriteFrames" uid="uid://c57grhb3pijbp" path="res://components/player-anim.tres" id="1_w5bfb"]
 [ext_resource type="Texture2D" uid="uid://deypuc6e3pjto" path="res://assets/sprites/Effects/dust_poof_8x8.png" id="3_jo2eh"]
+[ext_resource type="Script" path="res://scripts/player/idle.gd" id="5_b4jip"]
+[ext_resource type="Script" path="res://scripts/state/statemachine.gd" id="5_qfjxs"]
+[ext_resource type="Script" path="res://scripts/player/walk.gd" id="6_iolu4"]
+[ext_resource type="Script" path="res://scripts/player/sprint.gd" id="7_ibwta"]
+[ext_resource type="Script" path="res://scripts/player/dash.gd" id="8_236uc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gq67s"]
 size = Vector3(0.12207, 0.161133, 0.102417)
@@ -23,16 +28,14 @@ particles_anim_loop = true
 grow_amount = -1.006
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gk2y3"]
-gravity = Vector3(2.08165e-12, 0.1, 2.08165e-12)
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 
 [sub_resource type="QuadMesh" id="QuadMesh_w4woo"]
 size = Vector2(0.05, 0.05)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 script = ExtResource("1_qyib2")
-MAX_SPEED = null
-MAX_SPRINT_SPEED = 2.0
 ACCELLERATION = null
 FRICTION = null
 
@@ -57,3 +60,22 @@ lifetime = 1.06
 visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
 process_material = SubResource("ParticleProcessMaterial_gk2y3")
 draw_pass_1 = SubResource("QuadMesh_w4woo")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_qfjxs")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_b4jip")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("6_iolu4")
+MAX_WALK_SPEED = null
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("7_ibwta")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("8_236uc")
+DASH_SPEED = 4.0
+DASH_DURATION = 0.4
