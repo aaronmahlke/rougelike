@@ -1,3 +1,4 @@
+class_name Foliage
 extends Node3D
 
 @onready
@@ -9,8 +10,7 @@ var audio	= $Audio
 func _ready():
 	pass
 
-func _on_collision(body:Node3D):
-	print(body.name)
+func _on_collision(_body:Node3D):
 	animations.play("RESET")
 	animations.play("collision")
 	audio.play()

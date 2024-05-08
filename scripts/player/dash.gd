@@ -11,16 +11,23 @@ var audio: AudioStreamPlayer3D = null
 
 var dash_timer: float = 0.0
 var animation_name:	String = ""
+
+@onready
 var direction: Vector3 = Vector3.ZERO
 
 func enter(_msg := {}) -> void:
-	if "last_direction" in _msg:
-		direction = _msg.last_direction
+	direction = player.last_direction
+	if direction == Vector3.ZERO:
+		state_machine.transition_to("Idle")
+		return
 
 	dash_timer = DASH_DURATION
 	audio.play()
 
 func physics_update(_delta: float) -> void:
+	if direction == Vector3.ZERO:
+		state_machine.transition_to("Idle")
+		return
 	var dash_vector = direction * DASH_SPEED
 
 	# movement

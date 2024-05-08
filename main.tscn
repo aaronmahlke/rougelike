@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bim7x1l6lv7nh"]
 
-[ext_resource type="PackedScene" uid="uid://c2ctej6fvv5j7" path="res://components/player2d.tscn" id="1_55kl4"]
+[ext_resource type="PackedScene" uid="uid://c2ctej6fvv5j7" path="res://scenes/player2d.tscn" id="1_55kl4"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_b2yiv"]
 [ext_resource type="Texture2D" uid="uid://d3ffavwyl70s4" path="res://assets/sprites/atlas_floor-16x16.png" id="1_hjoj5"]
-[ext_resource type="PackedScene" uid="uid://gkl3ktqay73x" path="res://components/cursor.tscn" id="4_3dpj7"]
+[ext_resource type="PackedScene" uid="uid://gkl3ktqay73x" path="res://scenes/cursor.tscn" id="4_3dpj7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2uydx"]
 texture = ExtResource("1_hjoj5")

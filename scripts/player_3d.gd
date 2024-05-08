@@ -5,16 +5,15 @@ extends CharacterBody3D
 var sprite = $Sprite
 
 @onready
-var footstep_particles = $FootstepParticles
+var footstep_particles = $Footstep
 
 @onready
-var footstep_sounds = $FootstepSounds
+var attack_box = $AttackBox
 
-# @export_range(0, 100.0)
 var ACCELLERATION = 18
-
-# @export_range(0, 200.0)
 var FRICTION = 10
+
+var last_direction = Vector3.RIGHT
 
 func get_direction() -> Vector3:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")

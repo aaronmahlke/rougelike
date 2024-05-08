@@ -10,7 +10,6 @@ var audio: AudioStreamPlayer3D = null
 var STEP_DELAY:	float = 0.35
 
 var animation_name:	String = ""
-var last_direction:	Vector3 = Vector3.LEFT
 
 var step_timer:	float = 0.0
 
@@ -24,7 +23,7 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 
 	if direction != Vector3.ZERO: 
-		last_direction = direction
+		player.last_direction = direction
 
 	# animation
 	var direction_name = player.get_quarter(direction)
@@ -41,10 +40,13 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_released("sprint"):
 		state_machine.transition_to("Walk")
 
+	if Input.is_action_just_pressed("melee"):
+		state_machine.transition_to("Melee")
+
 	if Input.is_action_just_pressed("dash"):
-		state_machine.transition_to("Dash", {"last_direction": last_direction })
+		state_machine.transition_to("Dash")
 	elif direction == Vector3.ZERO: 
-		state_machine.transition_to("Idle", {"last_direction": last_direction })
+		state_machine.transition_to("Idle", {"last_direction": player.last_direction })
 
 
 func exit() -> void:
