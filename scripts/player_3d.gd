@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+var quarters = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw']
+
 @onready
 var sprite = $Sprite
 
@@ -24,8 +26,19 @@ func play_animation(animation_name: String):
 	if sprite.animation != animation_name:
 		sprite.animation = animation_name
 		sprite.play()
+
+func get_quarter(dir: Vector3) -> String:
+	var angle = (Vector3(0,0,-1).dot(dir) + 1) * 1.5
+	if dir.x < 0 or dir.x <= 0 and dir.z > 0:
+		if dir.x < 0:
+			angle += 1
+		angle += 4
+		return quarters[floor(angle)]
+
+	angle	= 3 - angle
+	return quarters[ceil(angle)]
 	
-func get_quarter(dir) -> String:
+func get_quarter_dep(dir) -> String:
 	if dir.x < 0:
 		if dir.z < 0:
 			return 'nw'

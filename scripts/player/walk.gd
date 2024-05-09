@@ -21,7 +21,7 @@ func physics_update(delta: float) -> void:
 		player.last_direction = direction
 
 	# movement
-	player.velocity += ( direction * player.ACCELLERATION * delta)
+	player.velocity += (direction * player.ACCELLERATION * delta)
 	player.velocity = player.velocity.limit_length(MAX_WALK_SPEED)
 	player.move_and_slide()
 
