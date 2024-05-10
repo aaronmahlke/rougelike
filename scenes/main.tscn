@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1k5i3lfl1vme"]
+[gd_scene load_steps=12 format=3 uid="uid://b1k5i3lfl1vme"]
 
 [ext_resource type="PackedScene" uid="uid://ds441iire4rx0" path="res://scenes/player.tscn" id="1_xrwec"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_jnyft"]
@@ -6,18 +6,9 @@
 [ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="3_7h1ec"]
 [ext_resource type="Environment" uid="uid://dwvb1qpgx3qvv" path="res://environment.tres" id="3_66op3"]
 [ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="3_75a8b"]
+[ext_resource type="PackedScene" uid="uid://1twg8w7vmpv2" path="res://scenes/floor.tscn" id="3_yjs1k"]
 [ext_resource type="PackedScene" uid="uid://b1slbm0appneb" path="res://scenes/Foliage.tscn" id="4_p46n5"]
 [ext_resource type="AudioStream" uid="uid://cd5d26f4tstiv" path="res://assets/audio/fx/wind.wav" id="7_owfr3"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_orlqn"]
-size = Vector3(100, 0.2, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_st3fm"]
-albedo_color = Color(0.964706, 0.882353, 0.815686, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7kh4y"]
-material = SubResource("StandardMaterial3D_st3fm")
-size = Vector3(100, 0.2, 100)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3h8wb"]
 shader = ExtResource("3_7h1ec")
@@ -43,16 +34,9 @@ shader_parameter/SOFTNESS = 0.65
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178347, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("2_rif0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791099, 0.138883, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
 
-[node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_orlqn")
-
-[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_7kh4y")
-skeleton = NodePath("../..")
+[node name="Floor" parent="." instance=ExtResource("3_yjs1k")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 2, 5)
@@ -122,3 +106,6 @@ stream = ExtResource("7_owfr3")
 volume_db = -21.61
 autoplay = true
 bus = &"Ambient"
+
+[node name="Guardian" parent="." instance=ExtResource("2_rif0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07264, 0, -0.53073)

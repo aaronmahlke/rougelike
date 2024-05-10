@@ -94,8 +94,8 @@ stream_1/stream = ExtResource("16_q3leq")
 stream_1/weight = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0iv8q"]
-height = 0.231545
-radius = 0.223758
+height = 0.1
+radius = 0.168241
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "footstep_particles", "attack_component") groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
@@ -131,25 +131,25 @@ draw_pass_1 = SubResource("QuadMesh_w4woo")
 [node name="Sprint" type="AudioStreamPlayer3D" parent="Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_jwo77")
-volume_db = -7.182
+volume_db = -13.0
 bus = &"Player"
 
 [node name="Walk" type="AudioStreamPlayer3D" parent="Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_r8v1c")
-volume_db = -8.727
+volume_db = -16.0
 bus = &"Player"
 
 [node name="Dash" type="AudioStreamPlayer3D" parent="Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_dmqu6")
-volume_db = -8.0
+volume_db = -16.0
 bus = &"Player"
 
 [node name="Melee" type="AudioStreamPlayer3D" parent="Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_gf8nj")
-volume_db = -4.364
+volume_db = -16.0
 bus = &"Player"
 
 [node name="StateMachine" type="Node" parent="."]
@@ -177,11 +177,11 @@ audio = NodePath("../../Audio/Dash")
 [node name="Melee" type="Node" parent="StateMachine" node_paths=PackedStringArray("audio")]
 script = ExtResource("21_2dvba")
 audio = NodePath("../../Audio/Melee")
+MELEE_DURATION = null
+MELEE_SPEED = null
 
 [node name="AttackComponent" parent="." instance=ExtResource("17_e10xw")]
 DAMAGE = 10.0
-KNOCKBACK = 4.0
 
 [node name="Collider" type="CollisionShape3D" parent="AttackComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0458285, 0)
 shape = SubResource("CylinderShape3D_0iv8q")

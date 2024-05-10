@@ -91,14 +91,14 @@ size = Vector3(0.180664, 0.200195, 0.0935059)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.608466, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_15txt"]
+[sub_resource type="CurveTexture" id="CurveTexture_1o7x3"]
 curve = SubResource("Curve_ng1au")
 
 [sub_resource type="Curve" id="Curve_4m764"]
 _data = [Vector2(0.777778, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_4cypu"]
+[sub_resource type="CurveTexture" id="CurveTexture_i3bse"]
 curve = SubResource("Curve_4m764")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_arssq"]
@@ -114,10 +114,10 @@ angular_velocity_max = 26.06
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 damping_max = 0.8
 scale_min = 0.0
-scale_curve = SubResource("CurveTexture_4cypu")
-alpha_curve = SubResource("CurveTexture_15txt")
+scale_curve = SubResource("CurveTexture_i3bse")
+alpha_curve = SubResource("CurveTexture_1o7x3")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf21a"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6nnf"]
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_4lvcn")
@@ -129,7 +129,7 @@ particles_anim_v_frames = 3
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_kt8nm"]
-material = SubResource("StandardMaterial3D_gf21a")
+material = SubResource("StandardMaterial3D_i6nnf")
 size = Vector2(0.07, 0.07)
 
 [node name="Foliage" type="Node3D"]
@@ -156,7 +156,7 @@ region_rect = Rect2(0, 0, 11, 24)
 
 [node name="CollisionAudio" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_fqulc")
-volume_db = -12.42
+volume_db = -7.934
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("5_fwwxx")]
 health_component = NodePath("../HealthComponent")
@@ -166,9 +166,10 @@ knockback_component = NodePath("../KnockbackComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00203145, 0.00395092, -0.00275652)
 shape = SubResource("BoxShape3D_rl6l0")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("death_particle_component", "sprite") instance=ExtResource("6_b0l56")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("death_particle_component", "damage_audio_component", "visual") instance=ExtResource("6_b0l56")]
 death_particle_component = NodePath("../ParticleComponent")
-sprite = NodePath("../Origin/Sprite")
+damage_audio_component = NodePath("../CollisionAudio")
+visual = NodePath("../Origin")
 
 [node name="KnockbackComponent" parent="." instance=ExtResource("7_q4elw")]
 

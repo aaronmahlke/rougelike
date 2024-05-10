@@ -1,53 +1,451 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyrad108ytjwx"]
+[gd_scene load_steps=66 format=3 uid="uid://dyrad108ytjwx"]
 
 [ext_resource type="PackedScene" uid="uid://cd1v7ho3nfm1i" path="res://components/hitbox_component.tscn" id="1_ef3bd"]
+[ext_resource type="Script" path="res://scripts/enemies/Guardian.gd" id="1_i387d"]
+[ext_resource type="Texture2D" uid="uid://dbexa1l83374i" path="res://assets/sprites/Guardian/Guardian Sprite-Sheet.png" id="2_lpcon"]
 [ext_resource type="PackedScene" uid="uid://bg6ejqho8pmvo" path="res://components/health_component.tscn" id="2_vqcjp"]
 [ext_resource type="PackedScene" uid="uid://b3n40iqdpg7jf" path="res://components/knockback_component.tscn" id="3_b3ne8"]
 [ext_resource type="Script" path="res://scripts/components/FlashComponent.gd" id="4_se04w"]
-[ext_resource type="Shader" path="res://shaders/foliage.gdshader" id="5_18qfv"]
-[ext_resource type="Texture2D" uid="uid://bqbcpcpheb3tg" path="res://assets/sprites/Misc/coral_11x24.png" id="6_fhmqo"]
+[ext_resource type="Script" path="res://scripts/components/ParticleComponent.gd" id="7_gyb58"]
+[ext_resource type="PackedScene" uid="uid://5lqo6eun71qb" path="res://components/state_machine.tscn" id="8_ln774"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/follow.gd" id="9_2oev1"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/stun.gd" id="10_aq6qs"]
+[ext_resource type="AudioStream" uid="uid://dnkhrmbiyu5yk" path="res://assets/audio/enemies/guardian/impacts/ESM_PG_cinematic_fx_weapons_warefare_melee_sword_blade_parry_strike_metal_impact_hit_01.wav" id="11_a8jxo"]
+[ext_resource type="AudioStream" uid="uid://bti5rmic5intw" path="res://assets/audio/enemies/guardian/impacts/ESM_PG_cinematic_fx_weapons_warefare_melee_sword_blade_parry_strike_metal_impact_hit_02.wav" id="12_xls7s"]
+[ext_resource type="AudioStream" uid="uid://bfx8higf41xuj" path="res://assets/audio/enemies/guardian/impacts/ESM_PG_cinematic_fx_weapons_warefare_melee_sword_blade_parry_strike_metal_impact_hit_06.wav" id="13_xc6ll"]
+[ext_resource type="AudioStream" uid="uid://1fvm7npnchiq" path="res://assets/audio/enemies/guardian/impacts/ESM_PG_cinematic_fx_weapons_warefare_melee_sword_blade_parry_strike_metal_impact_iron_05.wav" id="14_mfx6e"]
+[ext_resource type="AudioStream" uid="uid://3or2iwepv7gc" path="res://assets/audio/enemies/guardian/impacts/ESM_PG_cinematic_fx_weapons_warefare_melee_sword_iron_sharp_slash_grind_scrape_strike_impact_02.wav" id="15_sa7hi"]
+[ext_resource type="AudioStream" uid="uid://cfbuk7ly3tssw" path="res://assets/audio/enemies/guardian/impacts/ESM_PG_cinematic_fx_weapons_warefare_melee_sword_blade_parry_strike_metal_impact_iron_08.wav" id="16_si2lh"]
+[ext_resource type="AudioStream" uid="uid://bd2ha1nbxk4dn" path="res://assets/audio/enemies/guardian/death/debries.wav" id="17_nsdg0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehjcr"]
+radius = 0.0364424
+height = 0.360663
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lxbg"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 576, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnqre"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 624, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o116"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 672, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ywq"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 720, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67v0n"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 768, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcldt"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1392, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4sus"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1440, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saw4w"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1488, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dejcb"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1536, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no8hd"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1584, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7x1s"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1632, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhwyh"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1680, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsr5v"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1728, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eda7p"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1776, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_butsl"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1824, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kgbl"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1536, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf0rk"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1488, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sin5"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1440, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6bkx"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 1392, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt2l8"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 0, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isxd2"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 48, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwaot"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 96, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouwqq"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 144, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1164"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 192, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt43w"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 240, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcnjc"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 288, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjfop"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 336, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc8ca"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 384, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynkrh"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 432, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy0mc"]
+atlas = ExtResource("2_lpcon")
+region = Rect2(0, 480, 128, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c03h3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lxbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnqre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o116")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ywq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67v0n")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcldt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4sus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saw4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dejcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no8hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7x1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhwyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsr5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eda7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_butsl")
+}],
+"loop": true,
+"name": &"die",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_0kgbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf0rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sin5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6bkx")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt2l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isxd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwaot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouwqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1164")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt43w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcnjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjfop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc8ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynkrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy0mc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5lc6p"]
-size = Vector3(0.2, 0.2, 0.2)
+size = Vector3(0.13418, 0.2, 0.140161)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_51q5m"]
-render_priority = 0
-shader = ExtResource("5_18qfv")
-shader_parameter/speed = 2.426
-shader_parameter/intensity = 0.021
-shader_parameter/grass_texture = ExtResource("6_fhmqo")
+[sub_resource type="Curve" id="Curve_c407h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.608466, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[node name="Enemy" type="RigidBody3D"]
+[sub_resource type="CurveTexture" id="CurveTexture_85ie5"]
+curve = SubResource("Curve_c407h")
+
+[sub_resource type="Curve" id="Curve_8jjwm"]
+_data = [Vector2(0.777778, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rcmil"]
+curve = SubResource("Curve_8jjwm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j4d58"]
+angle_min = -247.6
+angle_max = 262.7
+velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+direction = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+spread = 115.576
+flatness = 0.443
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+angular_velocity_max = 26.06
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 0.8
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_rcmil")
+alpha_curve = SubResource("CurveTexture_85ie5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqhy1"]
+transparency = 1
+vertex_color_use_as_albedo = true
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 39
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8hdb2"]
+material = SubResource("StandardMaterial3D_eqhy1")
+size = Vector2(0.07, 0.07)
+
+[sub_resource type="Curve" id="Curve_pykwk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.608466, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2hauf"]
+curve = SubResource("Curve_pykwk")
+
+[sub_resource type="Curve" id="Curve_7fbsl"]
+_data = [Vector2(0.777778, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sj2bp"]
+curve = SubResource("Curve_7fbsl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4o64y"]
+angle_min = -247.6
+angle_max = 262.7
+velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+direction = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+spread = 115.576
+flatness = 0.443
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+angular_velocity_max = 26.06
+gravity = Vector3(0, -9, 0)
+damping_max = 0.8
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_sj2bp")
+alpha_curve = SubResource("CurveTexture_2hauf")
+collision_mode = 1
+collision_friction = 0.24
+collision_bounce = 0.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1gd8a"]
+transparency = 1
+vertex_color_use_as_albedo = true
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 39
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_n7is2"]
+material = SubResource("StandardMaterial3D_1gd8a")
+size = Vector2(0.07, 0.07)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e6rue"]
+streams_count = 6
+stream_0/stream = ExtResource("11_a8jxo")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_xls7s")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_xc6ll")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_mfx6e")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_sa7hi")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("16_si2lh")
+stream_5/weight = 1.0
+
+[node name="Guardian" type="RigidBody3D" node_paths=PackedStringArray("sprite")]
 lock_rotation = true
+script = ExtResource("1_i387d")
+sprite = NodePath("Origin/Animation")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-shape = SubResource("BoxShape3D_5lc6p")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147538, 0)
+shape = SubResource("CapsuleShape3D_ehjcr")
 
 [node name="Origin" type="Node3D" parent="."]
-transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 
-[node name="Sprite" type="Sprite3D" parent="Origin"]
-transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 0.100152, -0.0437963)
-material_override = SubResource("ShaderMaterial_51q5m")
+[node name="Animation" type="AnimatedSprite3D" parent="Origin"]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 0.41918, 0.129895, 1.00899e-16)
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("6_fhmqo")
-region_enabled = true
-region_rect = Rect2(0, 0, 11, 24)
+sprite_frames = SubResource("SpriteFrames_c03h3")
+animation = &"idle"
+frame = 8
+frame_progress = 0.251091
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("1_ef3bd")]
 health_component = NodePath("../HealthComponent")
 knockback_component = NodePath("../KnockbackComponent")
 
 [node name="Collider" type="CollisionShape3D" parent="HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00141259, 0.104916, -0.0032073)
 shape = SubResource("BoxShape3D_5lc6p")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_vqcjp")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("death_particle_component", "damage_particle_component", "damage_audio_component", "death_audio_component", "visual") instance=ExtResource("2_vqcjp")]
 MAX_HEALTH = 90.0
+death_particle_component = NodePath("../DeathParticleComponent")
+damage_particle_component = NodePath("../DamageParticleComponent")
+damage_audio_component = NodePath("../HitAudio")
+death_audio_component = NodePath("../DeathAudio")
+visual = NodePath("../Origin")
 
 [node name="KnockbackComponent" parent="." instance=ExtResource("3_b3ne8")]
 
 [node name="FlashComponent" type="Node" parent="."]
 script = ExtResource("4_se04w")
+
+[node name="DamageParticleComponent" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.209415, -0.0296967)
+emitting = false
+lifetime = 0.52
+one_shot = true
+explosiveness = 0.85
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_j4d58")
+draw_pass_1 = SubResource("QuadMesh_8hdb2")
+script = ExtResource("7_gyb58")
+
+[node name="DeathParticleComponent" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123655, 0)
+emitting = false
+lifetime = 0.52
+one_shot = true
+explosiveness = 0.85
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_4o64y")
+draw_pass_1 = SubResource("QuadMesh_n7is2")
+script = ExtResource("7_gyb58")
+
+[node name="StateMachine" parent="." instance=ExtResource("8_ln774")]
+initial_state = NodePath("Follow")
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("hitbox_component")]
+script = ExtResource("9_2oev1")
+hitbox_component = NodePath("../../HitboxComponent")
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("10_aq6qs")
+
+[node name="HitAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_e6rue")
+
+[node name="DeathAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("17_nsdg0")
+volume_db = -8.359
+
+[connection signal="finished" from="DamageParticleComponent" to="DamageParticleComponent" method="_on_finished"]
+[connection signal="finished" from="DeathParticleComponent" to="DeathParticleComponent" method="_on_finished"]

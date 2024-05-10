@@ -38,5 +38,5 @@ func update(_delta: float) -> void:
 			state_machine.transition_to("Walk")
 	
 func physics_update(delta: float) -> void:
-	player.velocity	= lerp(player.velocity, Vector3.ZERO, player.FRICTION * delta)	
+	player.velocity	= lerp(player.velocity, Vector3.ZERO, player.FRICTION * delta)
 	# player.move_and_slide()

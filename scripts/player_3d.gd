@@ -17,6 +17,9 @@ var FRICTION = 10
 
 var last_direction = Vector3.RIGHT
 
+func _ready():
+	Global.player = self
+
 func get_direction() -> Vector3:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -27,7 +30,7 @@ func play_animation(animation_name: String):
 		sprite.animation = animation_name
 		sprite.play()
 
-func get_quarte(dir: Vector3) -> String:
+func get_quarter(dir: Vector3) -> String:
 	var angle = (Vector3(0,0,-1).dot(dir) + 1) * 1.5
 	if dir.x < 0 or dir.x <= 0 and dir.z > 0:
 		if dir.x < 0:
@@ -35,10 +38,10 @@ func get_quarte(dir: Vector3) -> String:
 		angle += 4
 		return quarters[floor(angle)]
 
-	angle	= 3 - angle
+	angle = 3 - angle
 	return quarters[ceil(angle)]
 	
-func get_quarter(dir) -> String:
+func get_quarter_dep(dir) -> String:
 	if dir.x < 0:
 		if dir.z < 0:
 			return 'nw'
