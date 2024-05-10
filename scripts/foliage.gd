@@ -5,7 +5,7 @@ extends Node3D
 var animations = $Animations
 
 @onready 
-var audio	= $Audio
+var audio = $CollisionAudio
 
 func _ready():
 	pass

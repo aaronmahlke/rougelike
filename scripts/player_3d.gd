@@ -3,14 +3,14 @@ extends CharacterBody3D
 
 var quarters = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw']
 
-@onready
-var sprite = $Sprite
+@export
+var sprite: AnimatedSprite3D
 
-@onready
-var footstep_particles = $Footstep
+@export
+var footstep_particles: GPUParticles3D
 
-@onready
-var attack_box = $AttackBox
+@export
+var attack_component: AttackComponent
 
 var ACCELLERATION = 18
 var FRICTION = 10
@@ -27,7 +27,7 @@ func play_animation(animation_name: String):
 		sprite.animation = animation_name
 		sprite.play()
 
-func get_quarter(dir: Vector3) -> String:
+func get_quarte(dir: Vector3) -> String:
 	var angle = (Vector3(0,0,-1).dot(dir) + 1) * 1.5
 	if dir.x < 0 or dir.x <= 0 and dir.z > 0:
 		if dir.x < 0:
@@ -38,7 +38,7 @@ func get_quarter(dir: Vector3) -> String:
 	angle	= 3 - angle
 	return quarters[ceil(angle)]
 	
-func get_quarter_dep(dir) -> String:
+func get_quarter(dir) -> String:
 	if dir.x < 0:
 		if dir.z < 0:
 			return 'nw'

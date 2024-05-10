@@ -44,9 +44,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 
 	if target_state_name == "previous":
 		target_state_name = prev_state.name
-		print("Transitioning to previous state: ", target_state_name)
 	else:
-		print("Transitioning to: ", target_state_name)
 		prev_state = state
 
 	if not has_node(target_state_name):

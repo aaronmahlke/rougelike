@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ds441iire4rx0"]
+[gd_scene load_steps=34 format=3 uid="uid://ds441iire4rx0"]
 
 [ext_resource type="Script" path="res://scripts/player_3d.gd" id="1_qyib2"]
 [ext_resource type="SpriteFrames" uid="uid://c57grhb3pijbp" path="res://scenes/player-anim.tres" id="1_w5bfb"]
@@ -19,10 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://bk7ff41flb4wu" path="res://assets/audio/fx/player/Walk/Dirt/DIRT - Walk Short 6.wav" id="12_4of01"]
 [ext_resource type="AudioStream" uid="uid://v21hlnpdw0lx" path="res://assets/audio/fx/player/Walk/Dirt/DIRT - Walk 6.wav" id="13_2pvsb"]
 [ext_resource type="AudioStream" uid="uid://1uo6inp0nbmf" path="res://assets/audio/fx/player/roll.wav" id="13_ufhp1"]
-[ext_resource type="PackedScene" uid="uid://hghkotb2qj20" path="res://components/atack_component.tscn" id="15_0nlhl"]
 [ext_resource type="AudioStream" uid="uid://6pw2b36omr7u" path="res://assets/audio/fx/player/melee_1.wav" id="15_hunkt"]
 [ext_resource type="AudioStream" uid="uid://cx8gs827o2nuc" path="res://assets/audio/fx/player/melee_2.wav" id="16_q3leq"]
-[ext_resource type="Script" path="res://components/AttackBox.gd" id="17_e33yu"]
+[ext_resource type="PackedScene" uid="uid://ch61iby8bdque" path="res://components/attack_component.tscn" id="17_e10xw"]
 [ext_resource type="Script" path="res://scripts/player/melee.gd" id="21_2dvba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gq67s"]
@@ -98,9 +97,12 @@ stream_1/weight = 1.0
 height = 0.1
 radius = 0.168241
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "footstep_particles", "attack_component") groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 script = ExtResource("1_qyib2")
+sprite = NodePath("Sprite")
+footstep_particles = NodePath("Footstep")
+attack_component = NodePath("AttackComponent")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 0.0448156, -0.059)
@@ -108,7 +110,7 @@ double_sided = false
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("1_w5bfb")
-animation = &"melee-n"
+animation = &"idle"
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00017105, 0.109069, -0.0678101)
@@ -124,36 +126,31 @@ visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
 process_material = SubResource("ParticleProcessMaterial_gk2y3")
 draw_pass_1 = SubResource("QuadMesh_w4woo")
 
-[node name="AudioSprint" type="AudioStreamPlayer3D" parent="."]
+[node name="Audio" type="Node" parent="."]
+
+[node name="Sprint" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_jwo77")
 volume_db = -13.0
 bus = &"Player"
 
-[node name="AudioWalk" type="AudioStreamPlayer3D" parent="."]
+[node name="Walk" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_r8v1c")
 volume_db = -16.0
 bus = &"Player"
 
-[node name="AudioDash" type="AudioStreamPlayer3D" parent="."]
+[node name="Dash" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_dmqu6")
 volume_db = -16.0
 bus = &"Player"
 
-[node name="AudioMelee" type="AudioStreamPlayer3D" parent="."]
+[node name="Melee" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0475994, 0)
 stream = SubResource("AudioStreamRandomizer_gf8nj")
 volume_db = -16.0
 bus = &"Player"
-
-[node name="AttackBox" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0475994, 0)
-monitoring = false
-script = ExtResource("17_e33yu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBox"]
-shape = SubResource("CylinderShape3D_0iv8q")
-
-[node name="AtackComponent" parent="." node_paths=PackedStringArray("attackBox") instance=ExtResource("15_0nlhl")]
-attackBox = NodePath("../AttackBox")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_qfjxs")
@@ -164,22 +161,27 @@ script = ExtResource("5_b4jip")
 
 [node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("audio")]
 script = ExtResource("6_iolu4")
-audio = NodePath("../../AudioWalk")
+audio = NodePath("../../Audio/Walk")
 
 [node name="Sprint" type="Node" parent="StateMachine" node_paths=PackedStringArray("audio")]
 script = ExtResource("7_ibwta")
 MAX_SPRINT_SPEED = 1.5
-audio = NodePath("../../AudioSprint")
+audio = NodePath("../../Audio/Sprint")
 
 [node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("audio")]
 script = ExtResource("8_236uc")
 DASH_SPEED = 3.0
 DASH_DURATION = 0.361
-audio = NodePath("../../AudioDash")
+audio = NodePath("../../Audio/Dash")
 
 [node name="Melee" type="Node" parent="StateMachine" node_paths=PackedStringArray("audio")]
 script = ExtResource("21_2dvba")
-audio = NodePath("../../AudioMelee")
+audio = NodePath("../../Audio/Melee")
+MELEE_DURATION = null
+MELEE_SPEED = null
 
-[connection signal="area_entered" from="AttackBox" to="AttackBox" method="_on_area_entered"]
-[connection signal="body_entered" from="AttackBox" to="AttackBox" method="_on_body_entered"]
+[node name="AttackComponent" parent="." instance=ExtResource("17_e10xw")]
+DAMAGE = 10.0
+
+[node name="Collider" type="CollisionShape3D" parent="AttackComponent"]
+shape = SubResource("CylinderShape3D_0iv8q")

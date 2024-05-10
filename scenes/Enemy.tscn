@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyrad108ytjwx"]
+
+[ext_resource type="PackedScene" uid="uid://cd1v7ho3nfm1i" path="res://components/hitbox_component.tscn" id="1_ef3bd"]
+[ext_resource type="PackedScene" uid="uid://bg6ejqho8pmvo" path="res://components/health_component.tscn" id="2_vqcjp"]
+[ext_resource type="PackedScene" uid="uid://b3n40iqdpg7jf" path="res://components/knockback_component.tscn" id="3_b3ne8"]
+[ext_resource type="Script" path="res://scripts/components/FlashComponent.gd" id="4_se04w"]
+[ext_resource type="Shader" path="res://shaders/foliage.gdshader" id="5_18qfv"]
+[ext_resource type="Texture2D" uid="uid://bqbcpcpheb3tg" path="res://assets/sprites/Misc/coral_11x24.png" id="6_fhmqo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5lc6p"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51q5m"]
+render_priority = 0
+shader = ExtResource("5_18qfv")
+shader_parameter/speed = 2.426
+shader_parameter/intensity = 0.021
+shader_parameter/grass_texture = ExtResource("6_fhmqo")
+
+[node name="Enemy" type="RigidBody3D"]
+lock_rotation = true
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_5lc6p")
+
+[node name="Origin" type="Node3D" parent="."]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+
+[node name="Sprite" type="Sprite3D" parent="Origin"]
+transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 0.100152, -0.0437963)
+material_override = SubResource("ShaderMaterial_51q5m")
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_fhmqo")
+region_enabled = true
+region_rect = Rect2(0, 0, 11, 24)
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("1_ef3bd")]
+health_component = NodePath("../HealthComponent")
+knockback_component = NodePath("../KnockbackComponent")
+
+[node name="Collider" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_5lc6p")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_vqcjp")]
+MAX_HEALTH = 90.0
+
+[node name="KnockbackComponent" parent="." instance=ExtResource("3_b3ne8")]
+
+[node name="FlashComponent" type="Node" parent="."]
+script = ExtResource("4_se04w")
