@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwpekkvwg68vk"]
+
+[ext_resource type="Script" path="res://scripts/dungeon_generator.gd" id="1_ftgdd"]
+
+[sub_resource type="Environment" id="Environment_qh4lb"]
+
+[node name="DungeonTest" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22986, 0, 0)
+
+[node name="generator" type="Node" parent="."]
+script = ExtResource("1_ftgdd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.34984e-08, -0.960871, 0.276996, -4.31028e-09, 0.276996, 0.960871, -1, 4.06024e-08, -1.61905e-08, 0.647926, 10.9432, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.685856, 0.727737, 0, -0.727737, 0.685856, 0, 3.08073, 6.24859)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qh4lb")

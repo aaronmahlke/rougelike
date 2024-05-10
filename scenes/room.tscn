@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkubef2cec7wm"]
+
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_4mdef"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yv7p2"]
+size = Vector2(1.8, 1.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxjpo"]
+albedo_color = Color(0.254902, 0.364706, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h0do2"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Room" type="Node3D" node_paths=PackedStringArray("n", "e", "s", "w")]
+script = ExtResource("1_4mdef")
+n = NodePath("n")
+e = NodePath("e")
+s = NodePath("s")
+w = NodePath("w")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_yv7p2")
+
+[node name="n" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_nxjpo")
+mesh = SubResource("BoxMesh_h0do2")
+
+[node name="e" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+visible = false
+material_override = SubResource("StandardMaterial3D_nxjpo")
+mesh = SubResource("BoxMesh_h0do2")
+
+[node name="s" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_nxjpo")
+mesh = SubResource("BoxMesh_h0do2")
+
+[node name="w" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
+visible = false
+material_override = SubResource("StandardMaterial3D_nxjpo")
+mesh = SubResource("BoxMesh_h0do2")

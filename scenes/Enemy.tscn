@@ -1,11 +1,10 @@
-[gd_scene load_steps=66 format=3 uid="uid://dyrad108ytjwx"]
+[gd_scene load_steps=65 format=3 uid="uid://dyrad108ytjwx"]
 
 [ext_resource type="PackedScene" uid="uid://cd1v7ho3nfm1i" path="res://components/hitbox_component.tscn" id="1_ef3bd"]
 [ext_resource type="Script" path="res://scripts/enemies/Guardian.gd" id="1_i387d"]
 [ext_resource type="Texture2D" uid="uid://dbexa1l83374i" path="res://assets/sprites/Guardian/Guardian Sprite-Sheet.png" id="2_lpcon"]
 [ext_resource type="PackedScene" uid="uid://bg6ejqho8pmvo" path="res://components/health_component.tscn" id="2_vqcjp"]
 [ext_resource type="PackedScene" uid="uid://b3n40iqdpg7jf" path="res://components/knockback_component.tscn" id="3_b3ne8"]
-[ext_resource type="Script" path="res://scripts/components/FlashComponent.gd" id="4_se04w"]
 [ext_resource type="Script" path="res://scripts/components/ParticleComponent.gd" id="7_gyb58"]
 [ext_resource type="PackedScene" uid="uid://5lqo6eun71qb" path="res://components/state_machine.tscn" id="8_ln774"]
 [ext_resource type="Script" path="res://scripts/enemies/guardian/follow.gd" id="9_2oev1"]
@@ -382,8 +381,8 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_c03h3")
 animation = &"idle"
-frame = 8
-frame_progress = 0.251091
+frame = 5
+frame_progress = 0.999873
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("1_ef3bd")]
 health_component = NodePath("../HealthComponent")
@@ -402,9 +401,6 @@ death_audio_component = NodePath("../DeathAudio")
 visual = NodePath("../Origin")
 
 [node name="KnockbackComponent" parent="." instance=ExtResource("3_b3ne8")]
-
-[node name="FlashComponent" type="Node" parent="."]
-script = ExtResource("4_se04w")
 
 [node name="DamageParticleComponent" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.209415, -0.0296967)

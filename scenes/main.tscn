@@ -36,6 +36,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178347, 0)
 [node name="Enemy" parent="." instance=ExtResource("2_rif0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
 
+[node name="Enemy2" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rif0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
+sprite = NodePath("../Enemy/Origin/Animation")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rif0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
+sprite = NodePath("../Enemy/Origin/Animation")
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rif0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
+sprite = NodePath("../Enemy/Origin/Animation")
+
+[node name="Enemy5" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rif0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
+sprite = NodePath("../Enemy/Origin/Animation")
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rif0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0, 0)
+sprite = NodePath("../Enemy/Origin/Animation")
+
 [node name="Floor" parent="." instance=ExtResource("3_yjs1k")]
 
 [node name="Camera3D" type="Camera3D" parent="."]

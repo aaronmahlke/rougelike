@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b1slbm0appneb"]
+[gd_scene load_steps=21 format=3 uid="uid://b1slbm0appneb"]
 
 [ext_resource type="Texture2D" uid="uid://bqbcpcpheb3tg" path="res://assets/sprites/Misc/coral_11x24.png" id="1_4lvcn"]
 [ext_resource type="Script" path="res://scripts/foliage.gd" id="1_eojat"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cd1v7ho3nfm1i" path="res://components/hitbox_component.tscn" id="5_fwwxx"]
 [ext_resource type="PackedScene" uid="uid://bg6ejqho8pmvo" path="res://components/health_component.tscn" id="6_b0l56"]
 [ext_resource type="Script" path="res://scripts/components/ParticleComponent.gd" id="7_2qipg"]
-[ext_resource type="PackedScene" uid="uid://b3n40iqdpg7jf" path="res://components/knockback_component.tscn" id="7_q4elw"]
 
 [sub_resource type="Animation" id="Animation_gp0k0"]
 length = 0.001
@@ -160,7 +159,7 @@ volume_db = -7.934
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("5_fwwxx")]
 health_component = NodePath("../HealthComponent")
-knockback_component = NodePath("../KnockbackComponent")
+knockback_component = NodePath("")
 
 [node name="Collider" type="CollisionShape3D" parent="HitboxComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00203145, 0.00395092, -0.00275652)
@@ -170,8 +169,6 @@ shape = SubResource("BoxShape3D_rl6l0")
 death_particle_component = NodePath("../ParticleComponent")
 damage_audio_component = NodePath("../CollisionAudio")
 visual = NodePath("../Origin")
-
-[node name="KnockbackComponent" parent="." instance=ExtResource("7_q4elw")]
 
 [node name="ParticleComponent" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0250946, 0)
